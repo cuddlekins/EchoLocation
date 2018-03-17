@@ -1,0 +1,61 @@
+import numpy as np
+import cv2
+
+lowerbody_cascade = cv2.CascadeClassifier('haarcascade_lowerbody.xml')
+
+cap = cv2.VideoCapture(0)
+
+
+
+
+
+def findTemplateMaster(imgName):
+    while True:
+       s,img = cam.read()
+       img = cv2.resize(img,(0,0),fx=0.5,fy=0.5)
+       gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+       lowerbody = lowerbody_cascade.detectMultiScale(gray, 1.8, 1)
+       for (x,y,w,h) in lowerbody:
+          cv2.rectangle(img,(x,y),(x+w,y+h),(255,0,0),2)
+          roi_color = img[y:y+h, x:x+w]
+          cv2.imshow("roi_color",roi_color)
+          if cv2.waitKey(25) & 0xff == ord('q'):
+              cv2.imwrite(imgName+".png",roi_color)
+              return roi_color
+       cv2.imshow('img',img)
+
+
+    while True:
+       s,img = cam.read()
+       img = cv2.resize(img,(0,0),fx=0.5,fy=0.5)
+       gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+       lowerbody = lowerbody_cascade.detectMultiScale(gray, 1.8, 1)
+       for (x,y,w,h) in lowerbody:
+          cv2.rectangle(img,(x,y),(x+w,y+h),(255,0,0),2)
+          roi_color = img[y:y+h, x:x+w]
+          cv2.imshow("roi_color",roi_color)
+          if cv2.waitKey(25) & 0xff == ord('q'):
+              cv2.imwrite(imgName+".png",roi_color)
+
+
+
+while 1:
+    ret, img = cap.read()
+    img = cv2.resize(img,(0,0),fx=0.5,fy=0.5)
+    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    lowerbody = lowerbody_cascade.detectMultiScale(gray, 1.8, 1)
+
+    for (x,y,w,h) in lowerbody:
+        cv2.rectangle(img,(x,y),(x+w,y+h),(255,0,0),2)
+        roi_gray = gray[y:y+h, x:x+w]
+        roi_color = img[y:y+h, x:x+w]
+	print x,y,w,h
+   
+
+    cv2.imshow('img',img)
+    k = cv2.waitKey(5) & 0xff
+    if k == 27:
+        break
+
+cap.release()
+cv2.destroyAllWindows()
