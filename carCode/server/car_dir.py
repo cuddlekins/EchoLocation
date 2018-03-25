@@ -6,9 +6,11 @@ def Map(x, in_min, in_max, out_min, out_max):
 	return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
 
 def setup(busnum=None):
-	global leftPWM, rightPWM, homePWM, pwm
+	global leftPWM, softLeftPWM, rightPWM, softRightPWM, homePWM, pwm
 	leftPWM = 400
+	softLeftPWM = 425
 	homePWM = 450
+	softRightPWM = 475
 	rightPWM = 500
 	offset =0
 	try:
@@ -34,6 +36,9 @@ def turn_left():
 	global leftPWM
 	pwm.write(0, 0, leftPWM)  # CH0
 
+def soft_left():
+	global softLeftPWM
+	pwm.write(0, 0, softLeftPWM)
 # ==========================================================================================
 # Make the car turn right.
 # ==========================================================================================
@@ -41,6 +46,9 @@ def turn_right():
 	global rightPWM
 	pwm.write(0, 0, rightPWM)
 
+def soft_right():
+	global softRightPWM
+	pwm.write(0, 0, softRightPWM)
 # ==========================================================================================
 # Make the car turn back.
 # ==========================================================================================
