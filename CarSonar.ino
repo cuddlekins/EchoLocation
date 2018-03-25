@@ -34,7 +34,7 @@ int timeLen = 100;
 int RightLEDR = 255, RightLEDG = 0, RightLEDB = 0;
 //LED colors for left sensor
 int LeftLEDR = 255, LeftLEDG = 0, LeftLEDB = 0;
-int LStart = 0, LEnd = 5, REnd = 10;
+int LStart = 0, LEnd = 15, REnd = 30;
 
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(ledLenght, LEDPIN, NEO_GRB + NEO_KHZ800);
 
