@@ -24,8 +24,8 @@ def gpio_control(status, pin):
     if status in ['off', 'low']:    GPIO.output(pinNum, GPIO.LOW)
 
     return statement('Turning pin {} {}'.format(pin, status))
-	
-	
+
+
 @ask.intent('LocationControlIntent', mapping={'status': 'status', 'location': 'location'})
 def location_control(status, location):
 
@@ -42,7 +42,7 @@ def location_control(status, location):
     if status in ['off', 'low']:        GPIO.output(targetPin, GPIO.LOW)
 
     return statement('Turning {} {}!'.format(location, status))
-	
+
 @ask.intent('CircleControlIntent')
 def circle_control():
 
@@ -54,9 +54,10 @@ def circle_control():
 
     GPIO.setup(targetPin, GPIO.OUT)
     GPIO.output(targetPin, GPIO.HIGH)
+    GPIO.output(targetPin, GPIO.LOW)
 
     return statement('Doing a three sixty!')
-	
+
 @ask.intent('ChaChaControlIntent')
 def chacha_control():
 
@@ -68,5 +69,6 @@ def chacha_control():
 
     GPIO.setup(targetPin, GPIO.OUT)
     GPIO.output(targetPin, GPIO.HIGH)
+    GPIO.output(targetPin, GPIO.LOW)
 
     return statement('Doing the chacha!')
